@@ -1,0 +1,182 @@
+body {
+  background-color: rgba(169, 169, 169, 0.21);
+  font-family: "Nova Square";
+}
+
+.container {
+  margin-top: 225px;
+  padding: 15px;
+  border: 1px solid yellowgreen;
+  border-radius: 10px;
+  width: 50%;
+  height: 400px;
+  background-color: red;
+  box-shadow: 2px 2px 5px;
+}
+
+span {
+  font-style: italic;
+}
+
+#holster {
+  display: flex;
+  flex-direction: row;
+}
+
+/* pad bank styling */
+.pads {
+  min-width: 40%;
+  margin-top: 50px;
+  flex: 1;
+}
+
+.pad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(31, 31, 31, 0.864);
+  color: white;
+  box-shadow: 2px 2px 2px black;
+  height: 75px;
+  width: 100px;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+.pad:active {
+  background-color: rgb(178, 178, 178);
+  border: 1px solid black;
+  box-shadow: none;
+}
+
+#panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* switch css */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: black;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* end switch css */
+
+/* SwitchBoard */
+
+.display {
+  border: 1px solid black;
+  width: 300px;
+  height: 50px;
+  margin-top: 20px;
+  background: rgb(100, 116, 139);
+}
+
+/* start slider */
+
+.slide-container {
+  margin: 20px 0 20px 0;
+}
+
+#volume-slider {
+  width: 95%;
+
+  /* override default styling
+  so that we can create consistent
+  styling across browsers */
+  -webkit-appearance: none;
+  appearance: none;
+
+  cursor: pointer;
+
+  background: transparent;
+  /* outline: none; */
+}
+
+/***** Slider: Track & Thumb Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+#volume-slider[type="range"]::-webkit-slider-runnable-track {
+  background: #053a5f;
+  height: 3px;
+}
+
+#volume-slider[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: black;
+  height: 2rem;
+  width: 0.65rem;
+  margin-top: -12px;
+}
+
+/******** Firefox ********/
+#volume-slider[type="range"]::-moz-range-track {
+  background: #053a5f;
+  height: 2px;
+}
+
+#volume-slider[type="range"]::-moz-range-thumb {
+  background-color: black;
+  border: none;
+  height: 2rem;
+  width: 0.65rem;
+}
+
+/* end slider */
+
+.bank-switch {
+  margin-top: 20px;
+}
