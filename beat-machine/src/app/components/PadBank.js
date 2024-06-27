@@ -8,6 +8,7 @@ export default function PadBank({ onPadTrigger }) {
     (state) => state.soundBanks.activeSoundBank
   );
   const power = useSelector((state) => state.soundBanks.power);
+  const volume = useSelector((state) => state.soundBanks.volume);
   const sounds = banks[activeSoundBank] || {};
 
   // HANDLERS
@@ -19,8 +20,11 @@ export default function PadBank({ onPadTrigger }) {
     const soundUrl = sounds[pad];
     if (soundUrl) {
       const sound = new Audio(soundUrl);
+      sound.volume = volume / 100; // volume as a decimal or percentage, since HTMLMedia reads volume on a range [0, 1]
       sound.play();
-      onPadTrigger(pad);
+      onPadTrigger(
+        banks[activeSoundBank][pad].split("/")[2].split(".")[0].toUpperCase()
+      );
     } else {
       console.log(`No sound was found for pad: ${pad}`);
     }
