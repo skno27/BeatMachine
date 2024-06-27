@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import banks from "../../static/banks";
+import banks from "../../banks";
 
 export default function PadBank({ onPadTrigger }) {
   const padsRef = useRef([]);
