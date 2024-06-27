@@ -1,37 +1,52 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
+import banks from "../../static/banks";
 
-export default function PadBank() {
+export default function PadBank({ onPadTrigger }) {
+  const padsRef = useRef([]);
+  const activeSoundBank = useSelector(
+    (state) => state.soundBanks.activeSoundBank
+  );
+  const power = useSelector((state) => state.soundBanks.power);
+  const sounds = banks[activeSoundBank] || {};
+
+  // HANDLERS
+
   // handleClick
   const handleClick = (event) => {
-    alert(`Button clicked: ${event.target.innerText}`);
-    // we will check what button it is
-    let pad = event.target.innerText;
+    if (!power) return;
+    const pad = event.target.innerText.toLowerCase();
+    const soundUrl = sounds[pad];
+    if (soundUrl) {
+      const sound = new Audio(soundUrl);
+      sound.play();
+      onPadTrigger(pad);
+    } else {
+      console.log(`No sound was found for pad: ${pad}`);
+    }
   };
 
-  useEffect(() => {
-    // target the pads
-    const pads = document.querySelectorAll(".pad");
+  // handle key press
+  const handleKeyPress = (event) => {
+    if (!power) return;
+    let key = event.key.toLowerCase();
+    if (!"qweasdzxc".includes(key)) {
+      console.log(`This key (${event.key}) wont be used.`);
+    } else {
+      const element = document.getElementById(key);
+      if (element) {
+        element.click();
+      }
+    }
+  };
 
+  // assign handlers
+  useEffect(() => {
+    const pads = padsRef.current;
     // listen for clicks on each pad
     pads.forEach((pad) => {
       pad.addEventListener("click", handleClick);
     });
-
-    // handle key press
-    const handleKeyPress = (event) => {
-      let key = event.key.toLowerCase();
-
-      if (!"qweasdzxc".includes(key)) {
-        console.log(`This key (${event.key}) wont be used.`);
-      } else {
-        const element = document.getElementById(key);
-        element.click();
-        handleClick(element);
-
-        // const syntheticEvent = { target: element };
-        // handleClick(element);
-      }
-    };
     // attach the listener for keydowns to the window
     window.addEventListener("keydown", handleKeyPress);
 
@@ -43,62 +58,26 @@ export default function PadBank() {
       window.removeEventListener("keydown", handleKeyPress);
     };
   }),
-    [];
+    [power, activeSoundBank, sounds];
 
   return (
     <div className="pads">
       {/* 3 x 3 pad bank */}
-      <div className="d-flex flex-row justify-content-around">
+      {["qwe", "asd", "zxc"].map((row, rowIndex) => (
         <div
-          id="q"
-          className="pad">
-          Q
+          key={rowIndex}
+          className="d-flex flex-row justify-content-around">
+          {row.split("").map((key, index) => (
+            <div
+              key={index}
+              id={key}
+              className="pad"
+              ref={(el) => (padsRef.current[rowIndex * 3 + index] = el)}>
+              {key.toUpperCase()}
+            </div>
+          ))}
         </div>
-        <div
-          id="w"
-          className="pad">
-          W
-        </div>
-        <div
-          id="e"
-          className="pad">
-          E
-        </div>
-      </div>
-      <div className="d-flex flex-row justify-content-around">
-        <div
-          id="a"
-          className="pad">
-          A
-        </div>
-        <div
-          id="s"
-          className="pad">
-          S
-        </div>
-        <div
-          id="d"
-          className="pad">
-          D
-        </div>
-      </div>
-      <div className="d-flex flex-row justify-content-around">
-        <div
-          id="z"
-          className="pad">
-          Z
-        </div>
-        <div
-          id="x"
-          className="pad">
-          X
-        </div>
-        <div
-          id="c"
-          className="pad">
-          C
-        </div>
-      </div>
+      ))}
       {/* pad bank end */}
     </div>
   );

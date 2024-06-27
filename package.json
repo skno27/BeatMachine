@@ -1,0 +1,11 @@
+{
+  "name": "beatmachine",
+  "version": "1.0.0",
+  "description": "My plan is to use Redux to handle state changes triggered by the power switch, the volume slider, and the sound bank switch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

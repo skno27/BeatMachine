@@ -4,31 +4,14 @@ const initialState = {
   power: false,
   activeSoundBank: null,
   volume: 0,
-  // we may not need to use this, since the user wont be changing the engrained soundbanks, just which is action
-  //   soundBanks: {
-  //     1: {
-  //       q: "./samples/chord1",
-  //       w: "./samples/chord2",
-  //       e: "./samples/chord3",
-  //       a: "./samples/kick1",
-  //       s: "./samples/snare1",
-  //       d: "./samples/clap1",
-  //       z: "./samples/openhat1",
-  //       x: "./samples/closedhat1",
-  //       c: "./samples/perc1",
-  //     },
-  //     2: {
-  //       q: "./samples/samp1",
-  //       w: "./samples/samp2",
-  //       e: "./samples/samp3",
-  //       a: "./samples/kick2",
-  //       s: "./samples/snare2",
-  //       d: "./samples/clap2",
-  //       z: "./samples/openhat2",
-  //       x: "./samples/closedhat2",
-  //       c: "./samples/perc2",
-  //     },
-  //   },
+  message: "",
+  /* gpt originally advised me to put my soundBank mapping 
+  into the initial state.
+  i chose against this to make soundBanks immutable
+  to the user under the hood.
+  the user will only control which is active, making 
+  the bank collection static, in a sense
+  */
 };
 
 const soundBanksSlice = createSlice({
@@ -37,17 +20,41 @@ const soundBanksSlice = createSlice({
   reducers: {
     setPower: (state, action) => {
       state.power = action.payload;
+      if (action.payload) {
+        // when power is turned on...
+        state.message = "Powering on...";
+        // setTimeout(5000);
+        // state.message = "";
+        state.volume = 50;
+        state.activeSoundBank = 1;
+      } else {
+        // when power is turned off...
+        state.activeSoundBank = null;
+        state.volume = 0;
+        state.message = "";
+      }
     },
     setActiveSoundBank: (state, action) => {
-      state.activeSoundBank = action.payload;
+      if (state.power) {
+        state.activeSoundBank = action.payload;
+        state.message = `Bank ${action.payload}`;
+      }
     },
     setVolume: (state, action) => {
-      state.volume = action.payload;
+      if (state.power) {
+        state.volume = action.payload;
+        state.message = `Volume: ${action.payload}`;
+      }
+    },
+    setMessage: (state, action) => {
+      if (state.power) {
+        state.message = action.payload;
+      }
     },
   },
 });
 
-export const { setPower, setActiveSoundBank, setVolume } =
+export const { setPower, setActiveSoundBank, setVolume, setMessage } =
   soundBanksSlice.actions;
 
 export default soundBanksSlice.reducer;

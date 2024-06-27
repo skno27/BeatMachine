@@ -6,9 +6,9 @@ export default function PowerSwitch() {
   const dispatch = useDispatch();
   const power = useSelector((state) => state.soundBanks.power);
 
-  const handlePowerSwitch = (status) => {
-    // status of false is off, true is on
-    dispatch(setPower(status));
+  const handlePowerSwitch = () => {
+    // dispatch a binary power switching mechanism
+    dispatch(setPower(!power));
   };
 
   return (
