@@ -142,6 +142,7 @@ input:checked + .slider:before {
 
 .slide-container {
   margin: 20px 0 20px 0;
+  border: 1px solid black;
 }
 
 #volume-slider {
@@ -198,7 +199,7 @@ input:checked + .slider:before {
   .container {
     background-color: gray;
     border: 4px solid orangered;
-    height: 700px;
+    height: 625px;
     min-width: 90%;
     margin: 100px auto auto auto;
   }
@@ -209,7 +210,27 @@ input:checked + .slider:before {
     flex-direction: column-reverse;
   }
 
+  .smallerSwitchBoard {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bank-switch {
+    margin: none;
+    color: orangered;
+  }
+
+  .power {
+    color: orangered;
+  }
+
   .display {
     background: whitesmoke;
+    width: 200px;
+    /* margin-top: 20px; */
+  }
+
+  .slide-container {
+    display: none;
   }
 }

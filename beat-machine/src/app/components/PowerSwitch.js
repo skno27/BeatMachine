@@ -13,7 +13,7 @@ export default function PowerSwitch() {
 
   return (
     <div>
-      <h4 className="text-center mt-2">Power</h4>
+      <h4 className="text-center mt-2 power">Power</h4>
       <Switch
         isOn={power}
         onToggle={handlePowerSwitch}
