@@ -197,14 +197,19 @@ input:checked + .slider:before {
 @media (max-width: 800px) {
   .container {
     background-color: gray;
-    border: 2px solid orangered;
+    border: 4px solid orangered;
     height: 700px;
-    margin-bottom: 50px;
+    min-width: 90%;
+    margin: 100px auto auto auto;
   }
   #holster {
     flex-direction: column;
   }
   #panel {
     flex-direction: column-reverse;
+  }
+
+  .display {
+    background: whitesmoke;
   }
 }
