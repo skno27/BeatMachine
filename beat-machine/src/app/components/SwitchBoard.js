@@ -32,7 +32,9 @@ export default function SwitchBoard() {
 
   return (
     <div className="text-center smallerSwitchBoard">
-      <div className="display d-inline-flex p-2 bd-highlight">
+      <div
+        id="display"
+        className="d-inline-flex p-2 bd-highlight">
         <h3>{message}</h3>
       </div>
       <div className="slide-container">

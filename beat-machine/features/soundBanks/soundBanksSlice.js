@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  power: false,
-  activeSoundBank: null,
-  volume: 0,
-  message: "",
+  power: true, // true so that tests will pass on load, instead of failing before the machine is turned on
+  activeSoundBank: 1,
+  volume: 50,
+  message: "Welcome!",
   /* gpt originally advised me to put my soundBank mapping 
   into the initial state.
   i chose against this to make soundBanks immutable

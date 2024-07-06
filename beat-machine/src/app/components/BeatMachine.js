@@ -16,7 +16,9 @@ export default function BeatMachine() {
   };
 
   return (
-    <div className="container">
+    <div
+      id="drum-machine"
+      className="container">
       <div className="header-div  d-flex justify-content-end">
         <header>
           <span>SKNO(27)</span>

@@ -7,7 +7,7 @@ body {
   margin-top: 225px;
   border: 2px solid black;
   border-radius: 10px;
-  width: 50%;
+  width: 40%;
   height: 400px;
   background-color: red;
   box-shadow: 0px 1px 5px;
@@ -33,13 +33,17 @@ span {
 }
 
 /* pad bank styling */
-.pads {
-  min-width: 40%;
-  margin-top: 50px;
+#pad-bank {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  row-gap: 20px;
+  min-width: 50%;
+  margin-top: 30px;
   flex: 1;
 }
 
-.pad {
+.drum-pad {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,17 +51,17 @@ span {
   color: white;
   box-shadow: 2px 2px 2px black;
   height: 75px;
-  width: 100px;
+  width: 90px;
   border-radius: 5px;
   margin: 5px;
 }
 
-.pad:hover {
+.drum-pad:hover {
   cursor: pointer;
 }
 
-.pad:active {
-  background-color: rgb(178, 178, 178);
+.drum-pad:active {
+  background-color: rgba(16, 15, 15, 0.752);
   border: 1px solid black;
   box-shadow: none;
 }
@@ -130,7 +134,7 @@ input:checked + .slider:before {
 
 /* SwitchBoard */
 
-.display {
+#display {
   border: 1px solid black;
   width: 300px;
   height: 50px;
@@ -211,6 +215,11 @@ input:checked + .slider:before {
   #holster {
     flex-direction: column;
   }
+
+  #pad-bank {
+    margin-left: 12px;
+  }
+
   #panel {
     flex-direction: column-reverse;
   }
@@ -229,14 +238,14 @@ input:checked + .slider:before {
     color: orangered;
   }
 
-  .display {
+  #display {
     background: whitesmoke;
     width: 200px;
     text-align: center;
     /* margin-top: 20px; */
   }
 
-  .display h3 {
+  #display h3 {
     margin: auto;
   }
 

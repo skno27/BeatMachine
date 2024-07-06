@@ -16,8 +16,17 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"
+          onLoad={() => alert("Script loaded successfully!")}></script>
+      </head>
       <Provider store={store}>
-        <body className={inter.className}>{children}</body>
+        <body className={inter.className}>
+          {children}
+
+          <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+        </body>
       </Provider>
     </html>
   );
